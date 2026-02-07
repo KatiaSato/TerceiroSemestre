@@ -1,5 +1,5 @@
 # TerceiroSemestre
-Este repositório reúne os projetos e exercícios desenvolvidos durante o 3º semestre da graduação
+Este repositório reúne os projetos e exercícios desenvolvidos durante o 3º semestre da graduação em Análise e Desenvolvimento de Sistemas - FATEC. 
 
 
 O objetivo é organizar o conteúdo por disciplina, facilitando o acompanhamento das atividades e a construção de portfólio acadêmico.
