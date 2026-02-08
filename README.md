@@ -18,7 +18,7 @@ Projetos e exercícios desenvolvidos na linguagem C, com foco em:
 
 📁 Pasta: `Estrutura_de_dados/`
 
----
+
 
 ### Programação Orientada a Objetos (Java)
 Projetos desenvolvidos em Java aplicando conceitos de:
@@ -31,17 +31,6 @@ Projetos desenvolvidos em Java aplicando conceitos de:
 
 📁 Pasta: `poo-java/`
 
----
-
-## Estrutura do repositório
-
-terceiro-semestre/
-│
-├── Estrutura_de_Dados/
-└── poo-java/
-
-
----
 
 ## Tecnologias utilizadas
 
@@ -49,7 +38,7 @@ terceiro-semestre/
 - Java
 - Git e GitHub
 
----
+
 
 ## Objetivo
 
