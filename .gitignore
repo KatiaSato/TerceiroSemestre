@@ -53,3 +53,20 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ===== Java =====
+*.class
+
+# ===== Maven =====
+target/
+
+# ===== Gradle =====
+.gradle/
+build/
