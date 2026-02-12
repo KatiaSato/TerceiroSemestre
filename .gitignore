@@ -70,3 +70,10 @@ target/
 # ===== Gradle =====
 .gradle/
 build/
+/poo_java/PrimeiroProjetoSemestre/nbproject/private/
+
+# ===== NetBeans =====
+nbproject/private/
+build/
+dist/
+*.mf
