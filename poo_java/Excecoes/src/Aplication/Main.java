@@ -1,6 +1,7 @@
 package Aplication;
 
 import entities.Reservation;
+import exceptions.DomainException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ public class Main {
             System.out.println("Invalid data");
         }
         /*Bloco para capturar a excecao*/
-        catch (IllegalArgumentException e) {
+        catch (DomainException e) {
             System.out.println("Error in reservation" + e.getMessage());
         }
         sc.close();
