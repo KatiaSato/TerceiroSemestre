@@ -84,7 +84,7 @@ Isso dá mais flexibilidade, pois a exceção pode ser tratada apenas nos pontos
 Estrutura do projeto
 src
  ├─ application
- │   └─ Program.java
+ │   └─ Main.java
  │
  ├─  entities
  │        └─ Reservation.java
