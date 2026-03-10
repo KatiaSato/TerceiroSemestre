@@ -40,18 +40,18 @@ public class Reservation {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
     /*Atualiza o checkin*/
-    public String updateDates(Date checkIn, Date checkOut) {
+    public void updateDates(Date checkIn, Date checkOut) {
         /*checkIn do objeto recebe o valor de checkin do metodo que veio como argumento */
         Date now = new Date();
         if (checkIn.before(now) || checkOut.before(now)) {
-            return "Reservation dates for update must be future dates";
+            /*Excecao usada quando argumentos passados para o metodo sao invalidos*/
+            throw new IllegalArgumentException("Reservation dates for update must be future dates");
         }
         if (!checkOut.after(checkIn)) {
-            return "Error in reservation: Check-out date must be future dates";
+            throw new IllegalArgumentException("Error in reservation: Check-out date must be future dates");
         }
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        return null;
     }
     @Override
     public String toString() {
