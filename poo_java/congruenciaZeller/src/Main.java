@@ -1,24 +1,30 @@
 import entities.Calculadora;
-import entities.DataInvalidaException;
+import exception.DataInvalidaException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) throws DataInvalidaException {
         Scanner ler = new Scanner(System.in);
-        System.out.print("Digite o dia: ");
-        int dia = ler.nextInt();
-        System.out.print("Digite o mes: ");
-        int mes = ler.nextInt();
-        System.out.print("Digite o ano: ");
-        int ano = ler.nextInt();
+       try {
+           System.out.print("Digite o dia: ");
+           int dia = ler.nextInt();
+           System.out.print("Digite o mes: ");
+           int mes = ler.nextInt();
+           System.out.print("Digite o ano: ");
+           int ano = ler.nextInt();
         Calculadora calculadora = new Calculadora(dia, mes, ano);
-        try {
+           System.out.println(calculadora);
+
             String resultado = calculadora.diasDaSemana(dia, mes, ano);
         } catch (DataInvalidaException e) {
             System.err.println("Erro: " + e.getMessage());
-        }
-        System.out.print(calculadora.diasDaSemana(dia, mes, ano) + ", " + calculadora.getDia() + " de " + calculadora.nomeMes(mes)
-                + " de " + calculadora.getAno());
+        }catch (InputMismatchException e) {
+           System.err.println("Digite um valor valido: " + e.getMessage());
+           ler.nextLine();
+       }catch (RuntimeException e) {
+           System.err.println("Erro inesperado: " + e.getMessage());
+       }
     }
 }
