@@ -8,34 +8,9 @@ typedef struct no
     char nome[20];
     struct no *next;
 }no;
-    struct no *auxiliar, *inicio, *corrente;
-/*funcao instala o no na memoria*/
-void inserir()
-{
-/*primeiro bloco só é executado uma vez, que satisfaz a condição quando o ponteiro corrente é null*/
-   if(inicio==NULL)
-    {
-    corrente=(no*)malloc(sizeof(no));
-    auxiliar=corrente;
-    inicio=corrente;
-    corrente->next=NULL;
-
-   Enterdata();
-
-/*bloco que faz o encadeamento*/
-   }else{
-
-    corrente=(no*)malloc(sizeof(no));
-    auxiliar->next=corrente;
-    corrente->next=NULL;
-    auxiliar=corrente;
-
-    Enterdata();
-
-
-   }
-}
-/*função de entrada de dados*/
+    struct no *auxiliar, *inicio, *corrente, *auxiliar2;
+    
+/*funÃ§Ã£o de entrada de dados*/
 void Enterdata()
 {
 
@@ -48,8 +23,78 @@ void Enterdata()
     printf("Informe o nome: ");
     scanf("%s", &corrente->nome);
 
+}   
+      
+/*funcao instala o no na memoria*/
+void inserir(){
+	char procura[20];
+	int achou;
+	corrente=(no*)malloc(sizeof(no));
+	Enterdata();
+	auxiliar = inicio;
+	if(inicio==NULL){
+		auxiliar = corrente;
+		inicio = corrente;
+		corrente->next=NULL;
+		printf("instalado primeiro no");
+		//achou=1;	
+	}else if(strcmp(corrente->nome, auxiliar->nome)<0){
+		corrente->next=auxiliar;	
+		inicio=corrente;
+	    printf("primeiro elemento");
+	    system("pause");
+	    achou=1;
+			
+	}
+	else{
+		auxiliar2=auxiliar->next;
+	while(auxiliar2!=NULL){
+		if(strcmp(corrente->nome, auxiliar->nome)>=0 && (corrente->next, auxiliar2->nome)<=0){
+			auxiliar->next = corrente;
+			corrente->next=auxiliar2;
+			printf("meio da lista");
+			system("Pause");
+			achou=1;
+		}else{
+			auxiliar=auxiliar->next;
+			auxiliar2=auxiliar2->next;
+		}
+	  }	
 }
-/*função que exibe os dados*/
+	if(achou==0 && strcmp(corrente->nome, auxiliar->nome)>0){
+		auxiliar->next=corrente;
+		corrente->next=NULL;
+		printf("final da lista");
+		system("pause");
+	}	
+}
+
+	
+/*primeiro bloco sÃ³ Ã© executado uma vez, que satisfaz a condiÃ§Ã£o quando o ponteiro corrente Ã© null*/
+  /* if(inicio==NULL)
+    {
+    corrente=(no*)malloc(sizeof(no));
+    auxiliar=corrente;
+    inicio=corrente;
+    corrente->next=NULL;
+
+   Enterdata();
+
+/*bloco que faz o encadeamento*/
+/*   }else{
+
+    corrente=(no*)malloc(sizeof(no));
+    auxiliar->next=corrente; /*encademamento*/
+ /*   auxiliar=corrente; /*deslocamento*/
+ /*   corrente->next=NULL;/*posiciona null para next*/
+
+/*    Enterdata();
+
+
+   }
+}
+
+/*funÃ§Ã£o que exibe os dados*/
 void Exibir()
 {
     if(inicio==NULL)
@@ -64,7 +109,7 @@ void Exibir()
         printf("*************************************************************************\n");
         printf("\n                           [2]EXIBIR DADOS\n");
         printf("\n*************************************************************************\n");
-        printf("\nEndereco do ponteiro %p\n", auxiliar);
+        //printf("\nEndereco do ponteiro %p\n", auxiliar);
         printf("\nConsta o RA %d\n ", auxiliar->RA);
         printf("\nConsta o nome %s \n", auxiliar->nome);
         system("pause");
@@ -93,7 +138,7 @@ void pesquisar(){
     {
 
         if(strcmp(auxiliar->nome, procura)==0){
-        printf("\nEndereco do ponteiro: %p\n",auxiliar);
+        //printf("\nEndereco do ponteiro: %p\n",auxiliar);
         printf("\nConsta o RA: %d\n ", auxiliar->RA);
         printf("\nConsta o nome: %s\n", auxiliar->nome);
         encontrou = 1;
@@ -107,47 +152,59 @@ void pesquisar(){
 void remocao()
 {
     char procura[20];
-    int encontrou;
+    int encontrou = 0;
     if(inicio==NULL)
     {
         printf("Lista vazia");
         system("pause");
     }else{
     auxiliar=inicio;
-
+	
     system("cls");
     printf("*************************************************************************\n");
     printf("\n                           [4]REMOVER USUARIO\n");
     printf("\n*************************************************************************\n");
     printf("\nDigite o nome que quer remover: ");
     scanf("%s", &procura);
-
-    while(auxiliar!=NULL)
-    {
-
+	encontrou = 0;
+    
         if(strcmp(auxiliar->nome, procura)==0){
 
-            if(corrente==inicio){
-                inicio->next=auxiliar;
+            if(auxiliar==inicio){
+                inicio=inicio->next;
                 free(auxiliar);
                 printf("Usuario reomvido. \n");
                 encontrou = 1;
                 system("pause");
-                break;
             }
-            if(corrente==auxiliar){
-                corrente->next=auxiliar;
-                free(auxiliar);
-                printf("Usuario reomvido. \n");
-                encontrou = 1;
-                system("pause");
-                break;
-            }
-        }
-       auxiliar=auxiliar->next;
-    }
+            else{
+            	if(auxiliar!=NULL){
+            		while(corrente!=NULL){
+            			if(strcmp(corrente->nome, procura)==0){
+            				auxiliar->next=corrente->next;
+            				free(corrente);
+            				encontrou=1;
+            				printf("Usuario reomvido. \n");
+            				system("pause");
+                			break;
+						}else{
+							auxiliar=auxiliar->next;
+							corrente=corrente->next;
+						}
+						if(encontrou==0){
+							printf("Registro nao encontrado");
+							system("pause");
+						}
+					}  
+               }	
+		   }
+              
+       }
+       auxiliar->next = corrente->next;
+    
   }
 }
+
 int main()
 {
     corrente=NULL;
@@ -176,7 +233,7 @@ int main()
                 inserir();
                 printf("Deseja continuar o cadastro? (S)Sim ou (N)Nao: ");
                 scanf(" %c",&continuar);
-                continuar=toupper(continuar);
+                continuar = (continuar);
             }while(continuar=='s'||continuar=='S');
             break;
 
