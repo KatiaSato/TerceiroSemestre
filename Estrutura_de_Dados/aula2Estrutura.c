@@ -6,9 +6,9 @@ typedef struct no
 {
     int RA;
     char nome[20];
-    struct no *next;
+    struct no *next, *back;
 }no;
-    struct no *auxiliar, *inicio, *corrente, *auxiliar2;
+    struct no *auxiliar, *inicio, *corrente, *auxiliar2, *fim;
     
 /*função de entrada de dados*/
 void Enterdata()
@@ -29,19 +29,19 @@ void Enterdata()
 void inserir(){
 	char procura[20];
 	int achou;
-	corrente=(no*)malloc(sizeof(no));
+/*	corrente=(no*)malloc(sizeof(no));
 	Enterdata();
 	auxiliar = inicio;
 	if(inicio==NULL){
 		auxiliar = corrente;
 		inicio = corrente;
 		corrente->next=NULL;
-		printf("instalado primeiro no");
-		//achou=1;	
+		printf("instalado primeiro no\n");
+		achou=1;	
 	}else if(strcmp(corrente->nome, auxiliar->nome)<0){
 		corrente->next=auxiliar;	
 		inicio=corrente;
-	    printf("primeiro elemento");
+	    printf("primeiro elemento\n");
 	    system("pause");
 	    achou=1;
 			
@@ -52,7 +52,7 @@ void inserir(){
 		if(strcmp(corrente->nome, auxiliar->nome)>=0 && (corrente->next, auxiliar2->nome)<=0){
 			auxiliar->next = corrente;
 			corrente->next=auxiliar2;
-			printf("meio da lista");
+			printf("meio da lista\n");
 			system("Pause");
 			achou=1;
 		}else{
@@ -64,31 +64,33 @@ void inserir(){
 	if(achou==0 && strcmp(corrente->nome, auxiliar->nome)>0){
 		auxiliar->next=corrente;
 		corrente->next=NULL;
-		printf("final da lista");
+		printf("final da lista\n");
 		system("pause");
 	}	
 }
-
+*/
 	
 /*primeiro bloco só é executado uma vez, que satisfaz a condição quando o ponteiro corrente é null*/
-  /* if(inicio==NULL)
+   if(inicio==NULL)
     {
     corrente=(no*)malloc(sizeof(no));
+    corrente->next=NULL;
+    corrente->back=NULL;
     auxiliar=corrente;
     inicio=corrente;
-    corrente->next=NULL;
-
-   Enterdata();
+    fim=corrente;
+	Enterdata();
 
 /*bloco que faz o encadeamento*/
-/*   }else{
+   }else{
 
     corrente=(no*)malloc(sizeof(no));
     auxiliar->next=corrente; /*encademamento*/
- /*   auxiliar=corrente; /*deslocamento*/
- /*   corrente->next=NULL;/*posiciona null para next*/
-
-/*    Enterdata();
+    corrente->back = auxiliar;
+    corrente->next=NULL;/*posiciona null para next*/
+ 	auxiliar=corrente; /*deslocamento*/
+ 	fim=corrente;
+    Enterdata();
 
 
    }
