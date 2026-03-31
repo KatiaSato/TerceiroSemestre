@@ -83,13 +83,13 @@ void inserir(){
 
 /*bloco que faz o encadeamento*/
    }else{
-
+	auxiliar=fim;
     corrente=(no*)malloc(sizeof(no));
-    auxiliar->next=corrente; /*encademamento*/
-    corrente->back = auxiliar;
+    auxiliar->next=corrente; /*encademamento-auxiliar va para next e recebe corrente*/
+    corrente->back = auxiliar;/*corrente vai para back e recebe auxilar*/
+    auxiliar=corrente; /*deslocamento*/
     corrente->next=NULL;/*posiciona null para next*/
- 	auxiliar=corrente; /*deslocamento*/
- 	fim=corrente;
+ 	fim=corrente; /*fom vai para final da lista*/
     Enterdata();
 
 
@@ -122,13 +122,14 @@ void Exibir()
 void pesquisar(){
     char procura[20];
     int encontrou;
+    int k;
     if(inicio==NULL)
     {
         printf("Lista vazia");
         system("pause");
     }else{
-    auxiliar=inicio;
-
+    auxiliar=fim; //de tras pra frente
+	/*auxiliar = inicio de frente para tras*/
     system("cls");
     printf("*************************************************************************\n");
     printf("\n                           [3]PESQUISAR\n");
@@ -138,7 +139,7 @@ void pesquisar(){
 
     while(auxiliar!=NULL)
     {
-
+		k++;
         if(strcmp(auxiliar->nome, procura)==0){
         //printf("\nEndereco do ponteiro: %p\n",auxiliar);
         printf("\nConsta o RA: %d\n ", auxiliar->RA);
@@ -147,8 +148,13 @@ void pesquisar(){
         system("pause");
         break;
         }
-       auxiliar=auxiliar->next;
+       auxiliar=auxiliar->back; //de tras para frente
+       /*auxiliar=auxiliar->next de frente para tras*/
    }
+  }
+  if(encontrou==0){
+  	printf("Elemento nao encontrado...");
+  	system("pause");
   }
 }
 void remocao()
@@ -159,8 +165,7 @@ void remocao()
     {
         printf("Lista vazia");
         system("pause");
-    }else{
-    auxiliar=inicio;
+    }else{  
 	
     system("cls");
     printf("*************************************************************************\n");
@@ -169,21 +174,26 @@ void remocao()
     printf("\nDigite o nome que quer remover: ");
     scanf("%s", &procura);
 	encontrou = 0;
-    
+    auxiliar=inicio;
         if(strcmp(auxiliar->nome, procura)==0){
 
             if(auxiliar==inicio){
                 inicio=inicio->next;
                 free(auxiliar);
+                inicio->back=NULL;
                 printf("Usuario reomvido. \n");
                 encontrou = 1;
                 system("pause");
             }
             else{
+            	corrente=corrente->next; //sincronizando ponteiro
             	if(auxiliar!=NULL){
             		while(corrente!=NULL){
             			if(strcmp(corrente->nome, procura)==0){
-            				auxiliar->next=corrente->next;
+            				corrente=corrente->next;//salto
+            				corrente->back=auxiliar;//encadeamento
+            				corrente=auxiliar->next;//salto
+            				auxiliar->next=corrente->next;//encadeamento
             				free(corrente);
             				encontrou=1;
             				printf("Usuario reomvido. \n");
@@ -193,16 +203,24 @@ void remocao()
 							auxiliar=auxiliar->next;
 							corrente=corrente->next;
 						}
-						if(encontrou==0){
+						
+					}  
+               }
+			   if(encontrou==0 && strcmp(auxiliar->nome, procura)==0){
+			   	corrente=auxiliar->back;
+			   	corrente->next=NULL;
+			   	free(auxiliar);
+			   	printf("usuario removido");
+			   	system("pause");
+			   	encontrou=1;
+			   }	
+			   if(encontrou==0){
 							printf("Registro nao encontrado");
 							system("pause");
-						}
-					}  
-               }	
+			}
 		   }
-              
+             
        }
-       auxiliar->next = corrente->next;
     
   }
 }
