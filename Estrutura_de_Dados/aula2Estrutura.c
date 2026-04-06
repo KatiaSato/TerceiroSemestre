@@ -28,50 +28,59 @@ void Enterdata()
 /*funcao instala o no na memoria*/
 void inserir(){
 	char procura[20];
-	int achou;
-/*	corrente=(no*)malloc(sizeof(no));
+	int achou=0;
+	corrente=(no*)malloc(sizeof(no));
 	Enterdata();
 	auxiliar = inicio;
 	if(inicio==NULL){
 		auxiliar = corrente;
 		inicio = corrente;
 		corrente->next=NULL;
-		printf("instalado primeiro no\n");
-		achou=1;	
-	}else if(strcmp(corrente->nome, auxiliar->nome)<0){
-		corrente->next=auxiliar;	
+		corrente->back=NULL;
+		achou=1;
+		printf("Primeiro elemento da lista");
+		system("pause");	
+			}else if(strcmp(corrente->nome, auxiliar->nome)<0){
+		corrente->next=auxiliar;
+		auxiliar->back=corrente;
+		corrente->back=NULL;	
 		inicio=corrente;
-	    printf("primeiro elemento\n");
+		achou=1;
+	    printf("Elemento precede o primeiro elemento\n");
 	    system("pause");
-	    achou=1;
 			
 	}
 	else{
-		auxiliar2=auxiliar->next;
+		auxiliar2=auxiliar->next; //auxiliar2 passa na frente do auxiliar(sincronizou ponteiro)
 	while(auxiliar2!=NULL){
-		if(strcmp(corrente->nome, auxiliar->nome)>=0 && (corrente->next, auxiliar2->nome)<=0){
+		if(strcmp(corrente->nome, auxiliar->nome)>=0 && strcmp(corrente->nome, auxiliar2->nome)<=0){
 			auxiliar->next = corrente;
 			corrente->next=auxiliar2;
+			auxiliar2->back=corrente;
+			corrente->back=auxiliar;
+			achou=1;
 			printf("meio da lista\n");
 			system("Pause");
-			achou=1;
+			
+			break;
 		}else{
-			auxiliar=auxiliar->next;
+			auxiliar=auxiliar->next; //salta ponteiro
 			auxiliar2=auxiliar2->next;
 		}
 	  }	
 }
 	if(achou==0 && strcmp(corrente->nome, auxiliar->nome)>0){
 		auxiliar->next=corrente;
+		corrente->back=auxiliar;
 		corrente->next=NULL;
 		printf("final da lista\n");
 		system("pause");
 	}	
 }
-*/
+
 	
 /*primeiro bloco só é executado uma vez, que satisfaz a condição quando o ponteiro corrente é null*/
-   if(inicio==NULL)
+  /* if(inicio==NULL)
     {
     corrente=(no*)malloc(sizeof(no));
     corrente->next=NULL;
@@ -82,15 +91,15 @@ void inserir(){
 	Enterdata();
 
 /*bloco que faz o encadeamento*/
-   }else{
+ /*  }else{
 	auxiliar=fim;
     corrente=(no*)malloc(sizeof(no));
     auxiliar->next=corrente; /*encademamento-auxiliar va para next e recebe corrente*/
-    corrente->back = auxiliar;/*corrente vai para back e recebe auxilar*/
-    auxiliar=corrente; /*deslocamento*/
-    corrente->next=NULL;/*posiciona null para next*/
- 	fim=corrente; /*fom vai para final da lista*/
-    Enterdata();
+  /*  corrente->back = auxiliar;/*corrente vai para back e recebe auxilar*/
+  /*  auxiliar=corrente; /*deslocamento*/
+  /*  corrente->next=NULL;/*posiciona null para next*/
+ /*	fim=corrente; /*fom vai para final da lista*/
+  /*  Enterdata();
 
 
    }
