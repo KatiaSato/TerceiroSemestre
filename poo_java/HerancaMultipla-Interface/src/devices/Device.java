@@ -1,4 +1,4 @@
-package entities;
+package devices;
 
 public abstract class Device {
     public String serialNumber;

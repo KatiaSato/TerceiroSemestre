@@ -1,8 +1,9 @@
-package entities;
+package devices;
 
-public class Printer extends Device {
+//Herda de Device e implementa a interface Printer
+public class ConcretePrinter extends Device implements Printer {
 
-    public Printer(String serialNumber) {
+    public ConcretePrinter(String serialNumber) {
         super(serialNumber);
     }
 
@@ -10,7 +11,7 @@ public class Printer extends Device {
     public void processDoc(String doc) {
         System.out.println("Printer processsing: " + doc);
     }
-
+    @Override
     public void print(String doc) {
         System.out.println("Printing: " + doc);
     }
