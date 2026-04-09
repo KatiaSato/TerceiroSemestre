@@ -1,0 +1,7 @@
+Libelula,20000.0
+Sibelula,15000
+Isabelula,17000
+Raziel,100000
+Kain,150000
+Vorador,1000000
+Mobius,0.10
