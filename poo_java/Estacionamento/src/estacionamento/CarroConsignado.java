@@ -17,8 +17,9 @@ public class CarroConsignado extends Carro{
         super();
     }
 
-    public CarroConsignado(int placa, int anoFabricacao, String model, String vendedor, String nomeProprietario, double valorDesejado) {
-        super(placa, anoFabricacao, model, vendedor);
+
+    public CarroConsignado(int placa, int anoFabricacao, int codigo, String model, String vendedor, String nomeProprietario, double valorDesejado) {
+        super(placa, anoFabricacao, codigo, model, vendedor);
         this.nomeProprietario = nomeProprietario;
         this.valorDesejado = valorDesejado;
     }

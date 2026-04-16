@@ -14,16 +14,10 @@ public class CarroProprio extends Carro{
     private double valorCompra;
     private String dataCompra;
     public CarroProprio(){}
-    /**
-     *
-     * @param placa
-     * @param anoFabricacao
-     * @param modelo
-     * @param valorCompra
-     * @param dataCompra
-     */
-    public CarroProprio(int placa,int anoFabricacao,String modelo, String vendedor, double valorCompra, String dataCompra) {
-        super(placa, anoFabricacao, modelo, vendedor);
+
+
+    public CarroProprio(int placa, int anoFabricacao, int codigo, String model, String vendedor, double valorCompra, String dataCompra) {
+        super(placa, anoFabricacao, codigo, model, vendedor);
         this.valorCompra = valorCompra;
         this.dataCompra = dataCompra;
     }

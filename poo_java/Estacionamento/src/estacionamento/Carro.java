@@ -11,15 +11,17 @@ package estacionamento;
 public abstract class Carro {
     private int placa;
     private int anoFabricacao;
+    private int codigo;
     private String model, vendedor;
     private boolean disponivel;
 
     public Carro() {
     }
 
-    public Carro(int placa, int anoFabricacao, String model, String vendedor) {
+    public Carro(int placa, int anoFabricacao, int codigo, String model, String vendedor) {
         this.placa = placa;
         this.anoFabricacao = anoFabricacao;
+        this.codigo = codigo;
         this.model = model;
         this.vendedor = vendedor;
 
@@ -51,6 +53,21 @@ public abstract class Carro {
         this.model = model;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(String vendedor) {
+        this.vendedor = vendedor;
+    }
 
     public boolean disponivel() {
         return true;
@@ -62,6 +79,7 @@ public abstract class Carro {
             System.out.println("vendido" + vendedor);
         }
     }
+
 
     public abstract boolean oferta(double valor);
 
