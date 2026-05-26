@@ -8,7 +8,7 @@ typedef struct no
     char nome[20];
     struct no *next, *back;
 }no;
-    struct no *auxiliar, *topo;
+    struct no *auxiliar, *inicio, *fim;
     
     int c=0; 
 /*função de entrada de dados*/
@@ -22,41 +22,45 @@ void Enterdata() {
     scanf("%d", &auxiliar->RA);
     printf("Informe o nome: ");
     scanf("%s", &auxiliar->nome);
-
 }
-
-void push() {
-	if(topo==NULL) {
-		topo=(no*)malloc(sizeof(no));
-		topo->next=NULL;
-		topo->back=NULL;
-		auxiliar=topo;
-		c++;
+void Enquere() {
+	if(inicio==NULL) {
+		fim=(no*)malloc(sizeof(no));
+		fim->next=NULL;
+		inicio=fim;
+		auxiliar=fim;
 		Enterdata();
+		c++;
 	}else {
 		if(c>=3) {
 			printf("Stack over flow");
 			system("pause");
 		}else {
-			topo=(no*)malloc(sizeof(no));
-			auxiliar->next=topo;
-			topo->back=auxiliar;
-			auxiliar=topo;
-			topo->next=NULL;
-			c++;
+			fim=(no*)malloc(sizeof(no));
+			fim->next=NULL;
+			auxiliar=fim;
 			Enterdata();
+			c++;
 		}
 	}
 }
-void Top() {
-	 if(topo==NULL)
+
+void Seaquere() {
+	int achou=0;
+	int nr;
+	int k = 0;
+	if(inicio==NULL)
     {
         printf("Pilha vazia");
         system("pause");
     }else{
-    
+    auxiliar=inicio;
+    printf("\n Informe o nr do processo...");
+    scanf("%d", &nr);
+    achou=0;
     while(auxiliar!=NULL)
     {
+    	k++;
         system("cls");
         printf("*************************************************************************\n");
         printf("\n                           [2]EXIBIR DADOS\n");
@@ -65,39 +69,36 @@ void Top() {
         printf("\nConsta o RA %d\n ", auxiliar->RA);
         printf("\nConsta o nome %s \n", auxiliar->nome);
         system("pause");
-    }
+        achou=1;
+        break;
+    }else{
+    	auxiliar=auxiliar->next;
+	}
+  }
+  if(achou==0) {
+  	printf("\nProcesso nao consta na fila");
+  	system("pause");
   }
 }
 
-void Pop() {
-	
-	if(topo==NULL) {
-		printf("Stack is empty");
+void Dequere() {
+	if(inicio==NULL) {
+		printf("Queure is empty");
 		system("pause");
 	}else {
-		if(topo->next ==NULL && topo->back==NULL) {
-			free(topo);
-			auxiliar=NULL;
-			topo=NULL;
-			c=0;
-			printf("Removendo o ultimo elemento");
-			system("pause");
-		}else {
-			auxiliar=topo;
-			topo=topo->back;
-			topo->next=NULL;
-			free(auxiliar);
-			printf("Removido com sucesso o elemento da pilha");
-			system("pause");
-			c--;
-		}
+		auxiliar=inicio;
+		inicio=inicio->next;
+		free(auxiliar);
+		printf("Removendo o ultimo elemento");
+		system("pause");
+		c--;
 	}
-	
 }
+
 int main()
 {
     auxiliar=NULL;
-    topo=NULL;
+    inicio=NULL;
     int op;
     char continuar;
 
@@ -117,7 +118,7 @@ int main()
         {
         case 1:
             do{
-                push();
+                Enquere();
                 printf("Deseja continuar o cadastro? (S)Sim ou (N)Nao: ");
                 scanf(" %c",&continuar);
                 continuar = (continuar);
@@ -125,10 +126,10 @@ int main()
             break;
 
         case 2:
-            Top();
+            Seaquere();
             break;
         case 3:
-            Pop();
+            Dequere();
             break;
         case 4:
             printf("SAIR");
